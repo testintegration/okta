@@ -40,14 +40,12 @@ export class MessageListComponent implements OnInit{
     )
     .map(res =>res.json())
     .subscribe((messages: Array<Message>) => {
-
       messages.forEach(message => {
         console.log(message);
-        this.messages.push(message));
-      }
-    }
-    );
-
-
-}
+        this.messages.push(message)
+        }
+      );
+    });
+  }
+  
 }
