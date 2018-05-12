@@ -1,22 +1,30 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from "@angular/http";
 import { OktaAuthModule, OktaCallbackComponent } from '@okta/okta-angular';
 import { routing } from "./app.routing";
 
 import { AppComponent } from './app.component';
+import { ProfileComponent } from './profile/profile.component';
+import { MessageListComponent } from './message-list.component';
 
 const config = {
-  issuer: 'https://heidrick.oktapreview.com/oauth2/default',
+  issuer: 'https://dev-368187.oktapreview.com/oauth2/default',
   redirectUri: 'http://localhost:4200/implicit/callback',
-  clientId: '{clientId}'
+  clientId: '0oaeyr0t4kHdEtspN0h7'
 }
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProfileComponent,
+    MessageListComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    HttpModule,
     routing,
     OktaAuthModule.initAuth(config)
   ],

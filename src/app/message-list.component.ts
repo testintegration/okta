@@ -9,6 +9,7 @@ interface Message {
 }
 
 @Component({
+  selector: 'message-list',
   template: `
     <div *ngIf="messages.length">
       <li *ngFor="let message of messages">{{message.message}}</li>
@@ -28,13 +29,22 @@ export class MessageListComponent implements OnInit{
     const headers = new Headers({
       Authorization: 'Bearer ' + accessToken
     });
-
+    console.log('calling init!');
     // Make request
     this.http.get(
-      'http://localhost:4200/api/messages',
+      'http://localhost:3000/api/messages',
       new RequestOptions({ headers: headers })
     )
-    .map(res => res.json())
-    .subscribe((messages: Array<Message>) => messages.forEach(message => this.messages.push(message)));
-  }
+    .map(res =>res.json())
+    .subscribe((messages: Array<Message>) => {
+
+      messages.forEach(message => {
+        console.log(message);
+        this.messages.push(message));
+      }
+    }
+    );
+
+
+}
 }
