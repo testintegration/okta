@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { OktaAuthService } from '@okta/okta-angular';
+
+import { oktaConstants } from './oktaConstants.config';
+
 import 'rxjs/Rx';
 
 interface Message {
@@ -32,7 +35,7 @@ export class MessageListComponent implements OnInit{
     console.log('calling init!');
     // Make request
     this.http.get(
-      'http://localhost:3000/api/messages',
+      oktaConstants.resourceServer.messagesUrl,
       new RequestOptions({ headers: headers })
     )
     .map(res =>res.json())
